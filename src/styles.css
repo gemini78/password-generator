@@ -1,1 +1,16 @@
 @import url("@picocss/pico");
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100vw;
+}
+
+h1 {
+  text-align: center;
+}
