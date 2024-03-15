@@ -17,23 +17,40 @@ describe('AppComponent', () => {
         expect(article.textContent).toBe('Cliquez sur le bouton "Générer"')
     })
 
-    it('should changemessage when user clicks on generate button', async () => {
+    it('should change message when user clicks on generate button', async () => {
         await TestBed.configureTestingModule({
             declarations: [AppComponent]
         }).compileComponents();
 
         const fixture = TestBed.createComponent(AppComponent);
 
-        fixture.detectChanges();
+        fixture.autoDetectChanges();
 
         const button = fixture.nativeElement.querySelector('button');
 
         button.click();
 
-        fixture.detectChanges();
-
         const article = fixture.nativeElement.querySelector('article');
 
         expect(article.textContent).toBe('MON_MOT_DE_PASSE')
+    })
+
+    it('should update settings when user clicks on checkboxes', async () => {
+        await TestBed.configureTestingModule({
+            declarations: [AppComponent]
+        }).compileComponents();
+
+        const fixture = TestBed.createComponent(AppComponent);
+
+        fixture.autoDetectChanges();
+
+        fixture.nativeElement.querySelector('#uppercase').click();
+        expect(fixture.componentInstance.uppercase).toBeTrue();
+
+        fixture.nativeElement.querySelector('#symbols').click();
+        expect(fixture.componentInstance.symbols).toBeTrue();
+
+        fixture.nativeElement.querySelector('#numbers').click();
+        expect(fixture.componentInstance.numbers).toBeTrue();
     })
 })
