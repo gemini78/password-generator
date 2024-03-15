@@ -52,5 +52,9 @@ describe('AppComponent', () => {
 
         fixture.nativeElement.querySelector('#numbers').click();
         expect(fixture.componentInstance.numbers).toBeTrue();
+
+        fixture.nativeElement.querySelector('#length').value = 38;
+        fixture.nativeElement.querySelector('#length').dispatchEvent(new Event('input'));
+        expect(fixture.componentInstance.length).toBe(38);
     })
 })
