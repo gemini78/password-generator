@@ -1,16 +1,21 @@
-import { TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { AppComponent } from "./app.component";
 
 describe('AppComponent', () => {
-    it('should work', async () => {
+    let fixture: ComponentFixture<AppComponent>;
+    let component: AppComponent
+    beforeEach(async () => {
+
         await TestBed.configureTestingModule({
             declarations: [AppComponent]
         }).compileComponents();
 
-        const fixture = TestBed.createComponent(AppComponent); // virtual browser
+        fixture = TestBed.createComponent(AppComponent); // virtual browser
+        fixture.autoDetectChanges();
+        component = fixture.componentInstance;
+    })
 
-        fixture.detectChanges();
-
+    it('should work', async () => {
         // fixture.nativeElement <=> virtual dom
         const article = fixture.nativeElement.querySelector('article');
 
@@ -18,13 +23,6 @@ describe('AppComponent', () => {
     })
 
     it('should change message when user clicks on generate button', async () => {
-        await TestBed.configureTestingModule({
-            declarations: [AppComponent]
-        }).compileComponents();
-
-        const fixture = TestBed.createComponent(AppComponent);
-
-        fixture.autoDetectChanges();
 
         const button = fixture.nativeElement.querySelector('button');
 
@@ -35,27 +33,19 @@ describe('AppComponent', () => {
         expect(article.textContent).toBe('MON_MOT_DE_PASSE')
     })
 
-    it('should update settings when user clicks on checkboxes', async () => {
-        await TestBed.configureTestingModule({
-            declarations: [AppComponent]
-        }).compileComponents();
-
-        const fixture = TestBed.createComponent(AppComponent);
-
-        fixture.autoDetectChanges();
-
+    it('should update settings when user clicks on checkboxes and input range', async () => {
         fixture.nativeElement.querySelector('#uppercase').click();
-        expect(fixture.componentInstance.uppercase).toBeTrue();
+        expect(component.uppercase).toBeTrue();
 
         fixture.nativeElement.querySelector('#symbols').click();
-        expect(fixture.componentInstance.symbols).toBeTrue();
+        expect(component.symbols).toBeTrue();
 
         fixture.nativeElement.querySelector('#numbers').click();
-        expect(fixture.componentInstance.numbers).toBeTrue();
+        expect(component.numbers).toBeTrue();
 
         const length = fixture.nativeElement.querySelector('#length')
         length.value = 38;
         length.dispatchEvent(new Event('input'));
-        expect(fixture.componentInstance.length).toBe(38);
+        expect(component.length).toBe(38);
     })
 })
