@@ -12,20 +12,20 @@ import { Component } from '@angular/core';
     </div>
     <div>
       <label for="length">Longueur du mot de passe :{{length}}</label>
-      <input (input)="onChangeLength($event)" type="range" min="10" max="50" name="length" id="length">
+      <input [(ngModel)]="length" type="range" min="10" max="50" name="length" id="length">
 
       <label for="uppercase">
-        <input #uppercase (change)="onChangeSetting(uppercase.name, uppercase.checked)" role="switch" type="checkbox" name="uppercase" id="uppercase">
+        <input [(ngModel)]="uppercase" role="switch" type="checkbox" name="uppercase" id="uppercase">
         Contiendra des majuscules
       </label>
 
       <label for="numbers">
-        <input #numbers (change)="onChangeSetting(numbers.name, numbers.checked)" role="switch" type="checkbox" name="numbers" id="numbers">
+        <input [(ngModel)]="numbers" role="switch" type="checkbox" name="numbers" id="numbers">
         Contiendra des nombres
       </label>
 
       <label for="symbols">
-        <input #symbols (change)="onChangeSetting(symbols.name, symbols.checked)"  role="switch" type="checkbox" name="symbols" id="symbols">
+        <input [(ngModel)]="symbols" role="switch" type="checkbox" name="symbols" id="symbols">
         Contiendra des caractères spéciaux
       </label>
 
@@ -44,18 +44,6 @@ export class AppComponent {
   uppercase = false;
   numbers = false;
   symbols = false;
-
-
-  onChangeSetting(settingName: string, settingValue: boolean) {
-    if (settingName !== 'symbols' && settingName !== 'uppercase' && settingName !== 'numbers') return;
-    this[settingName] = settingValue;
-  }
-
-  onChangeLength(event: Event) {
-    const element = event.target as HTMLInputElement;
-    this.length = +element.value;
-
-  }
 
   onClickGenerate() {
     this.message = "MON_MOT_DE_PASSE";
