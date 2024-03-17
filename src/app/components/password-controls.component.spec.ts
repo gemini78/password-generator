@@ -29,8 +29,8 @@ describe('PasswordControlsComponent', () => {
         fixture.autoDetectChanges();
         component = fixture.componentInstance;
     })
-    it('should emit an "generate" event when user clicks the button ', () => {
+    it('should emit an "generate" event when user clicks the button ', async () => {
         fixture.nativeElement.querySelector('button').click();
-        expect(component.test).toBeTrue;
+        expect(component.test).toBeTrue();
     })
 })
