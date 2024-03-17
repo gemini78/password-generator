@@ -11,10 +11,7 @@ import { Settings } from './components/types';
     <div>
       <password-settings 
         (settings-change)="onSettingsChange($event)"
-        [default-length]="settings.length"
-        [default-uppercase]="settings.uppercase"
-        [default-numbers]="settings.numbers"
-        [default-symbols]="settings.symbols"
+        [default-settings]="settings"
       ></password-settings>
       <hr>
       <password-controls (generate)="onClickGenerate()"></password-controls>
