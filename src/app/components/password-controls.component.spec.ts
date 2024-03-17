@@ -10,10 +10,7 @@ import { Component } from "@angular/core";
     `
 })
 class TestComponent {
-    test = false;
-    onGenerate() {
-        this.test = true;
-    }
+    onGenerate() { }
 }
 
 describe('PasswordControlsComponent', () => {
@@ -30,7 +27,9 @@ describe('PasswordControlsComponent', () => {
         component = fixture.componentInstance;
     })
     it('should emit an "generate" event when user clicks the button ', async () => {
+        const spy = spyOn(component, "onGenerate");
+
         fixture.nativeElement.querySelector('button').click();
-        expect(component.test).toBeTrue();
+        expect(spy).toHaveBeenCalled();
     })
 })
