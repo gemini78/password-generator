@@ -6,10 +6,18 @@ import { Component } from "@angular/core";
 @Component({
     selector: 'test',
     template: `
-    <password-display message="MOCK_MESSAGE"></password-display>
+    <password-display password="MOCK_PASSWORD"></password-display>
     `
 })
 class TestComponent { }
+
+@Component({
+    selector: 'test',
+    template: `
+    <password-display></password-display>
+    `
+})
+class TestDefaultComponent { }
 
 describe("PasswordDisplayComponent", () => {
     it("should display the input message", async () => {
@@ -20,6 +28,17 @@ describe("PasswordDisplayComponent", () => {
         const fixture = TestBed.createComponent(TestComponent); // virtual browser
         fixture.autoDetectChanges();
         const article = fixture.nativeElement.querySelector('article');
-        expect(article.textContent).toContain("MOCK_MESSAGE");
+        expect(article.textContent).toContain("MOCK_PASSWORD");
+    })
+
+    it("should display a phrase when no passport is given", async () => {
+        await TestBed.configureTestingModule({
+            declarations: [PasswordDisplayComponent, TestDefaultComponent]
+        }).compileComponents();
+
+        const fixture = TestBed.createComponent(TestDefaultComponent); // virtual browser
+        fixture.autoDetectChanges();
+        const article = fixture.nativeElement.querySelector('article');
+        expect(article.textContent).toContain('Cliquez sur le bouton "Générer"');
     })
 })

@@ -7,7 +7,7 @@ import { Settings } from './components/types';
  <div class="container">
  <h1>Générer un mot de passe fort !</h1>
   <div class="grid" data-theme="light">
-    <password-display [message]="message"></password-display>
+    <password-display [password]="password"></password-display>
     <div>
       <password-settings 
         (settings-change)="onSettingsChange($event)"
@@ -22,7 +22,7 @@ import { Settings } from './components/types';
   styles: []
 })
 export class AppComponent {
-  message = 'Cliquez sur le bouton "Générer"';
+  password?: string;
 
   settings: Settings = {
     length: 30,
@@ -32,7 +32,7 @@ export class AppComponent {
   }
 
   onClickGenerate() {
-    this.message = "MON_MOT_DE_PASSE";
+    this.password = "MON_MOT_DE_PASSE";
     console.log("Génération du mot de passe");
     console.table(this.settings)
 
