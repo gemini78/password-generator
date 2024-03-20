@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { AppComponent } from "./app.component";
 import { FormsModule } from "@angular/forms";
-import { PasswordDisplayComponent } from "./components/password-display.component";
-import { PasswordControlsComponent } from "./components/password-controls.component";
-import { PasswordSettingsComponent } from "./components/password-settings.component";
-import { PasswordGeneratorService } from "./components/password-generator.service";
+import { PasswordDisplayComponent } from "./password-generator/password-display.component";
+import { PasswordControlsComponent } from "./password-generator/password-controls.component";
+import { PasswordSettingsComponent } from "./password-generator/password-settings.component";
+import { PasswordGeneratorService } from "./password-generator/password-generator.service";
+import { PasswordGeneratorModule } from "./password-generator/password-generator.module";
 
 describe('AppComponent', () => {
     let fixture: ComponentFixture<AppComponent>;
@@ -12,9 +13,8 @@ describe('AppComponent', () => {
     beforeEach(async () => {
 
         await TestBed.configureTestingModule({
-            declarations: [AppComponent, PasswordDisplayComponent, PasswordControlsComponent, PasswordSettingsComponent],
-            imports: [FormsModule],
-            providers: [PasswordGeneratorService]
+            declarations: [AppComponent],
+            imports: [PasswordGeneratorModule],
         }).compileComponents();
 
         fixture = TestBed.createComponent(AppComponent); // virtual browser
